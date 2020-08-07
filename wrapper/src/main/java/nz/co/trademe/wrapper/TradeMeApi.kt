@@ -8,6 +8,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.*
 
 private const val BASE_URL = "https://api.tmsandbox.co.nz/"
 private const val USER_AGENT = "TradeMeTechTest"
@@ -19,18 +20,18 @@ object TradeMeApi {
 
     private val okHttpClient: OkHttpClient
         get() = OkHttpClient.Builder()
-            .addInterceptor(securityInterceptor)
-            .build()
+                .addInterceptor(securityInterceptor)
+                .build()
 
     private val converterFactory: Converter.Factory
         get() = MoshiConverterFactory.create(Moshi.Builder().add(KotlinJsonAdapterFactory()).build())
 
     private val retrofit
         get() = Retrofit.Builder()
-            .addConverterFactory(converterFactory)
-            .client(okHttpClient)
-            .baseUrl(BASE_URL)
-            .build()
+                .addConverterFactory(converterFactory)
+                .client(okHttpClient)
+                .baseUrl(BASE_URL)
+                .build()
 
     val listingService: ListingService
         get() = retrofit.create(ListingService::class.java)

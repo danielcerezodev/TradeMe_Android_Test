@@ -15,8 +15,11 @@ class MainActivity : AppCompatActivity(), Callback<ClosingSoonListings> {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        println("START")
 
+        println("STARTING LISTING SERVICE")
         TradeMeApi.listingService.retrieveClosingSoonListings().enqueue(this)
+        println("STARTED LISTING SERVICE")
     }
 
     override fun onFailure(call: Call<ClosingSoonListings>, t: Throwable) {
@@ -25,6 +28,12 @@ class MainActivity : AppCompatActivity(), Callback<ClosingSoonListings> {
 
     override fun onResponse(call: Call<ClosingSoonListings>, response: Response<ClosingSoonListings>) {
         val body = response.body()
+        println("hello")
+        println("hello")
+        println("hello")
+        println("hello")
+        println("hello")
+        println(response)
         textView.text = when (body) {
             null -> response.message()
             else -> "Closing soon listings total count: ${body.totalCount}"

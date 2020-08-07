@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -12,6 +13,7 @@ android {
 
     defaultConfig {
         minSdkVersion 16
+        //noinspection OldTargetApi
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -21,8 +23,6 @@ android {
     }
 
     buildTypes {
-        def TRADEME_CONSUMER_KEY = "key"
-        def TRADEME_CONSUMER_SECRET = "secret"
         debug {
             buildConfigField('String', 'TRADEME_CONSUMER_KEY', '"' + TRADEME_CONSUMER_KEY + '"')
             buildConfigField('String', 'TRADEME_CONSUMER_SECRET', '"' + TRADEME_CONSUMER_SECRET + '"')
@@ -37,6 +37,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //noinspection GradleDependency
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation "com.squareup.okhttp3:okhttp:3.14.0"
     implementation "com.squareup.okhttp3:logging-interceptor:3.14.0"
@@ -44,4 +45,5 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-moshi:2.5.0"
     implementation "com.squareup.moshi:moshi:1.8.0"
     implementation "com.squareup.moshi:moshi-kotlin:1.8.0"
+    kapt 'com.squareup.moshi:moshi-kotlin-codegen:1.6.0'
 }
