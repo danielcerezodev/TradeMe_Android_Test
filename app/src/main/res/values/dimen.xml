@@ -4,7 +4,7 @@
     <integer name="padding_between_listings">30</integer>
 
     <!-- generic measurements for all layouts -->
-    <dimen name="space_none">5dp</dimen>
+    <dimen name="space_none">0dp</dimen>
     <dimen name="space_small">5dp</dimen>
     <dimen name="space_medium">10dp</dimen>
     <dimen name="space_large">20dp</dimen>
