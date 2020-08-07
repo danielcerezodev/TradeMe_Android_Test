@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">techtest</string>
     <string name="listing_image_content_description">Listing Image</string>
+    <string name="starting_bid">Starting bid: $%s</string>
 </resources>

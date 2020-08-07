@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- padding between items in the grid view -->
+    <integer name="padding_between_listings">30</integer>
+
+    <!-- generic measurements for all layouts -->
+    <dimen name="space_none">5dp</dimen>
+    <dimen name="space_small">5dp</dimen>
+    <dimen name="space_medium">10dp</dimen>
+    <dimen name="space_large">20dp</dimen>
+    <dimen name="space_extra_large">30dp</dimen>
+</resources>

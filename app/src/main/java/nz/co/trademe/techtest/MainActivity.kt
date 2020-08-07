@@ -19,6 +19,9 @@ class MainActivity : AppCompatActivity(), Callback<ClosingSoonListings> {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // This will hide the top bar from the activity
+        hideTopBar()
+
         // Start the listing server for retrieving closing soon listings
         TradeMeApi.listingService.retrieveClosingSoonListings().enqueue(this)
     }
@@ -29,21 +32,32 @@ class MainActivity : AppCompatActivity(), Callback<ClosingSoonListings> {
 
     override fun onResponse(call: Call<ClosingSoonListings>, response: Response<ClosingSoonListings>) {
         val body = response.body()
-        textView.text = when (body) {
-            null -> response.message()
-            else -> "Closing soon listings total count: ${body.totalCount}"
-        }
+
         // Initialise the recycler view
         initRecyclerView()
 
-        listingsAdapter.submitList(ArrayList(body!!.list))
+        // Make sure that the body of the response is not null
+        when (body) {
+            null -> println("TODO: SHOW ERROR LAYOUT")
+            else -> listingsAdapter.submitList(ArrayList(body.list))
+        }
     }
 
-    private fun initRecyclerView(){
+    // This method will initialise the recycler view by attaching the adapter  attached padding between items and
+    private fun initRecyclerView() {
         recycler_view.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
+            val topSpacingDecorator = TopSpacingItemDecoration(resources.getInteger(R.integer.padding_between_listings))
+            addItemDecoration(topSpacingDecorator)
             listingsAdapter = ListingsRecyclingAdapter()
             adapter = listingsAdapter
+        }
+    }
+
+    private fun hideTopBar() {
+        try {
+            this.supportActionBar!!.hide()
+        } catch (e: NullPointerException) {
         }
     }
 }

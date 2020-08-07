@@ -1,5 +1,7 @@
 package nz.co.trademe.techtest
 
+import android.content.res.Resources
+import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +31,7 @@ class ListingsRecyclingAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder){
             is ListingsViewHolder ->{
-                holder.bind(items.get(position))
+                holder.bind(items[position])
             }
         }
     }
@@ -43,6 +45,11 @@ class ListingsRecyclingAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
         // listing_item view items
         private val listingImage: ImageView = itemView.listing_image
         private val listingTitle: TextView = itemView.listing_title
+        private val listingRegion: TextView = itemView.listing_region
+        private val listingAskingPrice: TextView = itemView.listing_asking_price
+
+        // Getting placeholder text
+        private val startingBid = itemView.context.getString(R.string.starting_bid)
 
         fun bind(listing: Listing) {
             // Setting default properties in case the image can't be displayed
@@ -56,7 +63,9 @@ class ListingsRecyclingAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>()
                     .into(listingImage)
 
             // Other data
-            listingTitle.setText(listing.Title)
+            listingTitle.text = listing.Title
+            listingRegion.text = listing.Region
+            listingAskingPrice.text = startingBid.format(listing.StartPrice.toString())
         }
     }
 }
