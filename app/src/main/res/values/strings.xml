@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">techtest</string>
+    <string name="listing_image_content_description">Listing Image</string>
 </resources>
