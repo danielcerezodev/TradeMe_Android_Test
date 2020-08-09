@@ -1,4 +1,4 @@
-package nz.co.trademe.wrapper.dto
+package nz.co.trademe.wrapper.models
 
 import com.squareup.moshi.JsonClass
 

@@ -1,4 +1,4 @@
-package nz.co.trademe.techtest
+package nz.co.trademe.techtest.ui
 
 import android.graphics.Rect
 import android.view.View

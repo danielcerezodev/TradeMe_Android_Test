@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/space_medium"
@@ -43,7 +44,7 @@
                 android:id="@+id/listing_region"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textIsSelectable="true" />
+                tools:ignore="SelectableText" />
         </LinearLayout>
 
         <LinearLayout
@@ -62,7 +63,7 @@
                 style="@style/TitleGridView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textIsSelectable="true" />
+                tools:ignore="SelectableText" />
         </LinearLayout>
 
         <LinearLayout
@@ -83,7 +84,7 @@
                 style="@style/TitleGridView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textIsSelectable="true" />
+                tools:ignore="SelectableText" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
