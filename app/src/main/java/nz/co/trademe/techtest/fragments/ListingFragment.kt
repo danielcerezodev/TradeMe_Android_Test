@@ -15,6 +15,7 @@ import com.synnapps.carouselview.ImageListener
 import kotlinx.android.synthetic.main.fragment_listing.view.*
 import nz.co.trademe.techtest.R
 import nz.co.trademe.wrapper.TradeMeApi
+import nz.co.trademe.wrapper.dto.ClosingSoonListings
 import nz.co.trademe.wrapper.dto.ListingDetailed
 import nz.co.trademe.wrapper.models.Photo
 import retrofit2.Call
@@ -24,6 +25,7 @@ import retrofit2.Response
 
 /**
  * A [Fragment] class that displays the listing item details.
+ * This is achieved by an API call through [TradeMeApi]
  */
 class ListingFragment : Fragment(), Callback<ListingDetailed> {
 
@@ -57,10 +59,16 @@ class ListingFragment : Fragment(), Callback<ListingDetailed> {
         }
     }
 
+    /**
+     * A function that handles the if API call [ListingDetailed] fails
+     */
     override fun onFailure(call: Call<ListingDetailed>, t: Throwable) {
         Toast.makeText(context, "Error loading details for listing.", Toast.LENGTH_SHORT).show()
     }
 
+    /**
+     * A function that handles the response from the [ListingDetailed] API call
+     */
     override fun onResponse(call: Call<ListingDetailed>, response: Response<ListingDetailed>) {
         // Make sure that the body of the response is not null
         when (val body = response.body()) {
@@ -70,31 +78,39 @@ class ListingFragment : Fragment(), Callback<ListingDetailed> {
     }
 
     /**
-     * A function that loads all of the listing details into the view
+     * A function that loads all of the listing details into the [Fragment] views
      */
     private fun setListingDetails(listing: ListingDetailed) {
         // Getting placeholder text
+        val listingStartingBid = view!!.context.getString(R.string.starting_bid)
         val memberFeedbackText = view!!.context.getString(R.string.member_feedback)
+        val memberLocation = view!!.context.getString(R.string.member_location)
 
         // Listing details view items
         val listingImageCarousel = activity?.findViewById(R.id.detailed_listing_images) as CarouselView
         val listingTitle: TextView = view!!.detailed_listing_title
         val listingAskingPrice: TextView = view!!.detailed_listing_starting_price
+
         // Member details view items
         val listingMemberNickname: TextView = view!!.member_nickname
         val listingMemberLocation: TextView = view!!.member_location
         val listingMemberFeedback: TextView = view!!.member_feedback
 
-        val listingMemberLocationString = listing.member!!.Suburb + ", " + listing.member!!.Region
-//        val listingMemberLocationFeedback = listing.member!!.UniquePositive.toString() + ", " + listing.member!!.UniqueNegative.toString()
+        // Member location details
+        val suburb = listing.member!!.Suburb
+        val region = listing.member!!.Region
+        val listingMemberLocationString = memberLocation.format(suburb, region)
+
+        // Member feedback details
         val positiveFeedback = listing.member!!.UniquePositive.toString()
         val negativeFeedback = listing.member!!.UniqueNegative.toString()
-        val listingMemberLocationFeedback =  memberFeedbackText.format(positiveFeedback, negativeFeedback)
+        val listingMemberLocationFeedback = memberFeedbackText.format(positiveFeedback, negativeFeedback)
 
         // Listing data
         listingImages = listing.photos as ArrayList<Photo>
         listingTitle.text = listing.title
-        listingAskingPrice.text = listing.startPrice.toString()
+        listingAskingPrice.text = listingStartingBid.format(listing.startPrice.toString())
+
         // Member data
         listingMemberNickname.text = listing.member!!.Nickname
         listingMemberLocation.text = listingMemberLocationString
@@ -109,8 +125,7 @@ class ListingFragment : Fragment(), Callback<ListingDetailed> {
      * Image Listener for [CarouselView]
      * Loads all the listing images through Glide
      */
-    private var imageListener: ImageListener = ImageListener {
-        position, imageView ->
+    private var imageListener: ImageListener = ImageListener { position, imageView ->
         // Setting default properties in case the image can't be displayed
         val requestOptions = RequestOptions()
                 .placeholder(R.drawable.ic_launcher_background)

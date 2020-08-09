@@ -13,6 +13,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * [MainActivity] will display all of the [ClosingSoonListings]
+ * This is achieved by an API call through [TradeMeApi]
+ * These listings are displayed through a Recycler View [ListingsAdapter]
+ */
 class MainActivity : AppCompatActivity(), Callback<ClosingSoonListings> {
 
     private lateinit var listingsAdapter: ListingsAdapter
@@ -31,22 +36,31 @@ class MainActivity : AppCompatActivity(), Callback<ClosingSoonListings> {
         TradeMeApi.listingService.retrieveClosingSoonListings().enqueue(this)
     }
 
+    /**
+     * A function that handles the if API call [ClosingSoonListings] fails
+     */
     override fun onFailure(call: Call<ClosingSoonListings>, t: Throwable) {
         Toast.makeText(this, "Error loading closing soon listings.", Toast.LENGTH_SHORT).show()
     }
 
+    /**
+     * A function that handles the response from the [ClosingSoonListings] API call
+     */
     override fun onResponse(call: Call<ClosingSoonListings>, response: Response<ClosingSoonListings>) {
         // Make sure that the body of the response is not null
         when (val body = response.body()) {
-            null -> println("TODO: SHOW ERROR LAYOUT")
+            null -> Toast.makeText(this, "Error loading closing soon listings.", Toast.LENGTH_SHORT).show()
             else -> listingsAdapter.submitList(ArrayList(body.list))
         }
     }
 
-    // Initialise the recycler view by attaching the adapter  attached padding between items and
+    /**
+     * A function that initialises the recycler view by
+     * This functions attaches the adapter and the padding between items
+     */
     private fun initRecyclerView() {
         recycler_view.apply {
-            listingsAdapter = ListingsAdapter(this@MainActivity)
+            listingsAdapter = ListingsAdapter()
             val topSpacingDecorator = TopSpacingItemDecoration(resources.getInteger(R.integer.padding_between_listings))
             addItemDecoration(topSpacingDecorator)
             layoutManager = LinearLayoutManager(this@MainActivity)
@@ -54,7 +68,9 @@ class MainActivity : AppCompatActivity(), Callback<ClosingSoonListings> {
         }
     }
 
-    // Hides to Top Bar for a better view of the listings
+    /**
+     * A function that hides to Top Bar of the activity
+     */
     private fun hideTopBar() {
         try {
             this.supportActionBar!!.hide()

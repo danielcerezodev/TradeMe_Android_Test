@@ -1,19 +1,27 @@
 <resources>
     <string name="app_name">techtest</string>
-    <string name="listing_image_content_description">Listing Image</string>
+
+    <!--  text to format  -->
     <string name="starting_bid">$%s</string>
     <string name="member_feedback">%s positive - %s negative</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="seller_section_title">About the seller</string>
+    <string name="member_location">%s, %s</string>
+
+    <!--  titles  -->
     <string name="details_sections_title">Details</string>
     <string name="feedback_title">Feedback</string>
+    <string name="seller_section_title">About the seller</string>
     <string name="starting_bid_title">Starting bid</string>
-    <string name="starting_big_tagline">Starting big</string>
+
+    <!--  tag lines  -->
+    <string name="starting_bid_tagline">Starting bid</string>
+
+    <!--  placeholder text  -->
+    <string name="placeholder_nickname">Nickname</string>
+    <string name="placeholder_location">Suburb, Region</string>
     <string name="placeholder_region">Region</string>
     <string name="placeholder_listing_title">Listing Title</string>
     <string name="placeholder_starting_big">$999.99</string>
     <string name="placeholder_feedback">0 positive - 0 negative</string>
-    <string name="placeholder_nickname">Nickname</string>
-    <string name="placeholder_location">Suburb, Region</string>
+    <string name="listing_image_content_description">Listing Image</string>
+
 </resources>

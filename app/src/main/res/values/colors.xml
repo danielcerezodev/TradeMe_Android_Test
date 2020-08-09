@@ -7,4 +7,8 @@
     <color name="colorGrey">#808080</color>
     <color name="colorBackground">#F5F5F5</color>
     <color name="colorSection">#FFFFFFFF</color>
+    <color name="colorTransparent">#00000000</color>
+    <color name="carousel_stroke">#FF777777</color>
+    <color name="colorLightGreyTransparent">#99C0C0C0</color>
+    <color name="colorLightGrey">#C0C0C0</color>
 </resources>

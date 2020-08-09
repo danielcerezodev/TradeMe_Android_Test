@@ -96,7 +96,7 @@
                 style="@style/Tagline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/starting_big_tagline"
+                android:text="@string/starting_bid_tagline"
                 tools:ignore="SelectableText" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

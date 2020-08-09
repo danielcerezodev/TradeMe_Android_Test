@@ -9,4 +9,15 @@
     <dimen name="space_medium">10dp</dimen>
     <dimen name="space_large">15dp</dimen>
     <dimen name="space_extra_large">20dp</dimen>
+
+    <!--  carousel settings  -->
+    <integer name="carousel_interval">3000</integer>
+    <dimen name="carousel_view_height">300dp</dimen>
+    <dimen name="carousel_stroke_width">1dp</dimen>
+
+    <!--  scrollbar settings  -->
+    <integer name="scrollbar_fade_duration">2</integer>
+
+    <!--  top bar settings  -->
+    <integer name="top_bar_gradient_angle">-90</integer>
 </resources>

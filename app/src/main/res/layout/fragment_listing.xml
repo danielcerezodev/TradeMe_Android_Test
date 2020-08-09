@@ -34,21 +34,20 @@
             <com.synnapps.carouselview.CarouselView
                 android:id="@+id/detailed_listing_images"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="@dimen/carousel_view_height"
                 android:layout_margin="@dimen/space_none"
                 android:adjustViewBounds="true"
                 android:background="@drawable/ic_launcher_background"
                 android:contentDescription="@string/listing_image_content_description"
                 android:scaleType="centerInside"
-                app:fillColor="#FFFFFFFF"
+                app:fillColor="@color/colorSection"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:pageColor="#00000000"
-                app:radius="6dp"
-                app:slideInterval="3000"
-                app:strokeColor="#FF777777"
-                app:strokeWidth="1dp" />
+                app:pageColor="@color/colorTransparent"
+                app:slideInterval="@integer/carousel_interval"
+                app:strokeColor="@color/carousel_stroke"
+                app:strokeWidth="@dimen/carousel_stroke_width" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/detailed_listing_top_section"

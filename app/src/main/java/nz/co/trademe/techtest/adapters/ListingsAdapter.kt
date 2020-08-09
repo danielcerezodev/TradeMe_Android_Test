@@ -1,6 +1,5 @@
 package nz.co.trademe.techtest.adapters
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,8 +20,7 @@ import nz.co.trademe.wrapper.models.Listing
 /**
  * A [RecyclerView.Adapter] class that displays all of the closing soon listings
  */
-class ListingsAdapter(private val Context: Context) :
-        RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ListingsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val diffCallback = object : DiffUtil.ItemCallback<Listing>() {
 
@@ -79,6 +77,9 @@ class ListingsAdapter(private val Context: Context) :
         // Getting placeholder text
         private val startingBid = itemView.context.getString(R.string.starting_bid)
 
+        /**
+         * A function that handles the user's click on any [Listing]
+         */
         fun bind(item: Listing) = with(itemView) {
             itemView.setOnClickListener {
 
@@ -89,7 +90,8 @@ class ListingsAdapter(private val Context: Context) :
                 val bundle = Bundle()
                 bundle.putLong("listingId", item.ListingId!!)
                 listingFragment.arguments = bundle
-                // Call the extension function for fragment transaction
+
+                // Open the new fragment
                 (context as FragmentActivity).supportFragmentManager.beginTransaction()
                         .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_right)
                         .replace(R.id.main_activity, listingFragment)
