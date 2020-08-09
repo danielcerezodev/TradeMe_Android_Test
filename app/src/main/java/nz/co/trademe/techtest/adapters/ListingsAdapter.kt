@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -19,11 +18,13 @@ import nz.co.trademe.techtest.R
 import nz.co.trademe.techtest.fragments.ListingFragment
 import nz.co.trademe.wrapper.models.Listing
 
-
-class ListingsAdapter(private val Context: Context, private val interaction: Interaction? = null) :
+/**
+ * A [RecyclerView.Adapter] class that displays all of the closing soon listings
+ */
+class ListingsAdapter(private val Context: Context) :
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Listing>() {
+    private val diffCallback = object : DiffUtil.ItemCallback<Listing>() {
 
         override fun areItemsTheSame(oldItem: Listing, newItem: Listing): Boolean {
             return oldItem.ListingId == newItem.ListingId
@@ -34,7 +35,7 @@ class ListingsAdapter(private val Context: Context, private val interaction: Int
         }
 
     }
-    private val differ = AsyncListDiffer(this, DIFF_CALLBACK)
+    private val differ = AsyncListDiffer(this, diffCallback)
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -44,8 +45,7 @@ class ListingsAdapter(private val Context: Context, private val interaction: Int
                         R.layout.listing_item,
                         parent,
                         false
-                ),
-                interaction
+                )
         )
     }
 
@@ -67,8 +67,7 @@ class ListingsAdapter(private val Context: Context, private val interaction: Int
 
     class ListingViewHolder
     constructor(
-            itemView: View,
-            private val interaction: Interaction?
+            itemView: View
     ) : RecyclerView.ViewHolder(itemView) {
 
         // listing_item view items
@@ -82,12 +81,6 @@ class ListingsAdapter(private val Context: Context, private val interaction: Int
 
         fun bind(item: Listing) = with(itemView) {
             itemView.setOnClickListener {
-//                interaction?.onItemSelected(adapterPosition, item)
-
-//                // Activity Open
-//                val intent = Intent(context, ListingActivity::class.java)
-//                intent.putExtra("listingId",item.ListingId)
-//                context.startActivity(intent)
 
                 // Fragment for displaying listing details
                 val listingFragment = ListingFragment()
@@ -118,10 +111,6 @@ class ListingsAdapter(private val Context: Context, private val interaction: Int
                     .load(item.PictureHref)
                     .into(listingImage)
         }
-    }
-
-    interface Interaction {
-        fun onItemSelected(position: Int, item: Listing)
     }
 }
 

@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/space_medium"
-    android:layout_marginEnd="@dimen/space_medium"
-    app:cardCornerRadius="@dimen/space_small"
+    android:layout_marginStart="@dimen/space_large"
+    android:layout_marginEnd="@dimen/space_large"
+    android:background="@color/colorSection"
     app:cardElevation="@dimen/space_medium"
     app:cardPreventCornerOverlap="false">
 
@@ -32,9 +32,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingStart="@dimen/space_medium"
+            android:layout_marginStart="@dimen/space_large"
             android:paddingTop="@dimen/space_medium"
-            android:paddingEnd="@dimen/space_medium"
+            android:layout_marginEnd="@dimen/space_large"
             app:layout_constraintBottom_toTopOf="@+id/listing_title_section"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -42,8 +42,10 @@
 
             <TextView
                 android:id="@+id/listing_region"
+                style="@style/Tagline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@string/placeholder_region"
                 tools:ignore="SelectableText" />
         </LinearLayout>
 
@@ -51,8 +53,8 @@
             android:id="@+id/listing_title_section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/space_medium"
-            android:paddingEnd="@dimen/space_medium"
+            android:layout_marginStart="@dimen/space_large"
+            android:layout_marginEnd="@dimen/space_large"
             app:layout_constraintBottom_toTopOf="@+id/listing_pricing_section"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -63,6 +65,7 @@
                 style="@style/TitleGridView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@string/placeholder_listing_title"
                 tools:ignore="SelectableText" />
         </LinearLayout>
 
@@ -70,9 +73,10 @@
             android:id="@+id/listing_pricing_section"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/space_medium"
+            android:layout_marginStart="@dimen/space_large"
+            android:layout_marginEnd="@dimen/space_large"
+            android:orientation="vertical"
             android:paddingTop="@dimen/space_large"
-            android:paddingEnd="@dimen/space_medium"
             android:paddingBottom="@dimen/space_large"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -81,9 +85,18 @@
 
             <TextView
                 android:id="@+id/listing_asking_price"
-                style="@style/TitleGridView"
+                style="@style/StartingBidGridView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@string/placeholder_starting_big"
+                tools:ignore="SelectableText" />
+
+            <TextView
+                android:id="@+id/listing_asking_price_tagline"
+                style="@style/Tagline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/starting_big_tagline"
                 tools:ignore="SelectableText" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,20 +29,26 @@
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-            <ImageView
-                android:id="@+id/detailed_listing_image"
+            <com.synnapps.carouselview.CarouselView
+                android:id="@+id/detailed_listing_images"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
                 android:layout_margin="@dimen/space_none"
                 android:adjustViewBounds="true"
+                android:background="@drawable/ic_launcher_background"
                 android:contentDescription="@string/listing_image_content_description"
-                android:padding="@dimen/space_none"
-                android:scaleType="fitXY"
+                android:scaleType="centerInside"
+                app:fillColor="#FFFFFFFF"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:pageColor="#00000000"
+                app:radius="6dp"
+                app:slideInterval="3000"
+                app:strokeColor="#FF777777"
+                app:strokeWidth="1dp" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/detailed_listing_top_section"
@@ -52,10 +58,12 @@
                 android:paddingStart="@dimen/space_medium"
                 android:paddingTop="@dimen/space_medium"
                 android:paddingEnd="@dimen/space_medium"
+                app:cardElevation="@dimen/space_medium"
+                app:cardPreventCornerOverlap="false"
                 app:layout_constraintBottom_toTopOf="@+id/detailed_listing_details_section"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/detailed_listing_image">
+                app:layout_constraintTop_toBottomOf="@+id/detailed_listing_images">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -68,27 +76,29 @@
 
                     <TextView
                         android:id="@+id/detailed_listing_title"
-                        style="@style/TitleGridView"
+                        style="@style/TitleListing"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="@string/placeholder_listing_title"
                         tools:ignore="SelectableText" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space_large"
                         android:layout_marginTop="@dimen/space_medium"
-                        android:layout_marginEnd="@dimen/space_large"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/detailed_listing_starting_price"
+                            style="@style/ListingStartingBid"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="@string/placeholder_starting_big"
                             tools:ignore="SelectableText" />
 
                         <TextView
                             android:id="@+id/starting_bid_title"
+                            style="@style/Tagline"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/starting_bid_title"
@@ -101,11 +111,14 @@
                 android:id="@+id/detailed_listing_details_section"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_large"
                 android:background="@color/colorSection"
                 android:paddingStart="@dimen/space_medium"
                 android:paddingTop="@dimen/space_medium"
                 android:paddingEnd="@dimen/space_medium"
                 android:paddingBottom="@dimen/space_large"
+                app:cardElevation="@dimen/space_medium"
+                app:cardPreventCornerOverlap="false"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/detailed_listing_top_section">
@@ -121,7 +134,7 @@
 
                     <TextView
                         android:id="@+id/detailed_listing_asking_price"
-                        style="@style/TitleGridView"
+                        style="@style/SectionTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/seller_section_title"
@@ -130,31 +143,36 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space_large"
                         android:layout_marginTop="@dimen/space_medium"
-                        android:layout_marginEnd="@dimen/space_large"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/member_nickname"
+                            style="@style/Nickname"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="@string/placeholder_nickname"
                             tools:ignore="SelectableText" />
 
                         <TextView
                             android:id="@+id/member_location"
+                            style="@style/Tagline"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="@string/placeholder_location"
                             tools:ignore="SelectableText" />
 
                         <TextView
                             android:id="@+id/member_feedback"
+                            style="@style/Feedback"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/space_large"
+                            android:text="@string/placeholder_feedback"
                             tools:ignore="SelectableText" />
 
                         <TextView
+                            style="@style/Tagline"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/feedback_title" />

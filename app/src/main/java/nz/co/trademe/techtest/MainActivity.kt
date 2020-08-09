@@ -9,12 +9,11 @@ import nz.co.trademe.techtest.adapters.ListingsAdapter
 import nz.co.trademe.techtest.ui.TopSpacingItemDecoration
 import nz.co.trademe.wrapper.TradeMeApi
 import nz.co.trademe.wrapper.dto.ClosingSoonListings
-import nz.co.trademe.wrapper.models.Listing
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity(), Callback<ClosingSoonListings>, ListingsAdapter.Interaction {
+class MainActivity : AppCompatActivity(), Callback<ClosingSoonListings> {
 
     private lateinit var listingsAdapter: ListingsAdapter
 
@@ -44,7 +43,7 @@ class MainActivity : AppCompatActivity(), Callback<ClosingSoonListings>, Listing
         }
     }
 
-    // This method will initialise the recycler view by attaching the adapter  attached padding between items and
+    // Initialise the recycler view by attaching the adapter  attached padding between items and
     private fun initRecyclerView() {
         recycler_view.apply {
             listingsAdapter = ListingsAdapter(this@MainActivity)
@@ -55,10 +54,7 @@ class MainActivity : AppCompatActivity(), Callback<ClosingSoonListings>, Listing
         }
     }
 
-    override fun onItemSelected(position: Int, item: Listing) {
-        println("THIS WORKS NOW")
-    }
-
+    // Hides to Top Bar for a better view of the listings
     private fun hideTopBar() {
         try {
             this.supportActionBar!!.hide()

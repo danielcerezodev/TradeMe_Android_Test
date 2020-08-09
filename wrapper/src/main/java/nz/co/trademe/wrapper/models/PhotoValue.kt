@@ -10,5 +10,7 @@ data class PhotoValue(
         var List: String?,
         var Medium: String?,
         var PhotoId: Int?,
-        var Thumbnail: String?
+        var Thumbnail: String?,
+        var OriginalWidth: Int?,
+        var OriginalHeight: Int?
 )
