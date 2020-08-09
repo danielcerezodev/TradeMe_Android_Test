@@ -8,7 +8,7 @@
     android:background="@color/colorBackground"
     android:duration="@android:integer/config_shortAnimTime"
     tools:context=".fragments.ListingFragment">
-    
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
